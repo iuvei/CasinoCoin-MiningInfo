@@ -6,7 +6,7 @@
   
   class CasinoCoinMiningInfo
   {
-    public static function get()
+    public static function get($pNumBlocks=-1)
     {
 /*
  * Format returned in JSON format
@@ -35,7 +35,7 @@ Array
         }
         else
         {
-          $array_values = self::determineMiningInfo();
+          $array_values = self::determineMiningInfo($pNumBlocks);
           $valuesStr = json_encode($array_values);
           $memcache->set($cacheStr, $valuesStr, false, _MEMCACHE_INTERVAL_CASINOCOINAPI_MININGINFO);          
         }          
