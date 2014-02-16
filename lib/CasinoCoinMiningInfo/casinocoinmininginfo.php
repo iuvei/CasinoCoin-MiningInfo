@@ -48,7 +48,7 @@ Array
       return $array_values;
     }
     
-    private static function determineMiningInfo()
+    private static function determineMiningInfo($pNumBlocks=-1)
     {
       $array_values = array();
       
@@ -63,12 +63,12 @@ Array
           );
         
         $array_info = $casinocoin->getinfo();
-        $array_mininginfo = $casinocoin->getmininginfo();
+        $hashps = $casinocoin->getnetworkhashps($pNumBlocks);
         
         $array_values["version"] = $array_info["version"];
         $array_values["difficulty"] = $array_info["difficulty"];
         $array_values["blocks"] = $array_info["blocks"];
-        $array_values["networkhashps"] = $array_mininginfo["networkhashps"];
+        $array_values["networkhashps"] = $hashps;
       } catch (Exception $e) {}
       
       return $array_values;
